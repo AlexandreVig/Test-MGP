@@ -3,22 +3,28 @@
 This is a RESTful API built with **Symfony** and **JWT authentication**.
 It provides user authentication, registration, and protected routes.
 
-## Dependencies
+## 🚀 Dependencies
 
-This API is build using Symfony so make sure that you have the necessary depencies for it.
+This API is built using Symfony, so make sure that you have the necessary dependencies installed.
 
-Install PHP 8.2 or higher and these PHP extensions (which are installed and enabled by default in most PHP 8 installations): Ctype, iconv, PCRE, Session, SimpleXML, and Tokenizer;
-Install Composer, which is used to install PHP packages.
+### **Required Tools**
+- **PHP 8.2 or higher** (with required extensions: Ctype, iconv, PCRE, Session, SimpleXML, and Tokenizer)
+- **Composer** (PHP package manager)
+- **Symfony CLI** (for running the Symfony server)
+- **PostgreSQL** (for the database)
+- **Docker & Docker Compose** (optional, for easy database setup)
 
-[More info](https://symfony.com/doc/current/setup.html)
+🔗 **[Symfony Installation Guide](https://symfony.com/doc/current/setup.html)**
 
-## Install Additional Dependencies
+## 📦 Install Additional Dependencies
+
+Run the following command to install all required PHP dependencies:
 
 ```sh
 composer install
 ```
 
-## Configure the Environment
+## ⚙️ Configure the Environment
 
 Rename .env to .env.local and update needed data:
 
@@ -27,10 +33,20 @@ APP_ENV=prod_or_dev
 APP_SECRET=your_app_secret
 DATABASE_URL="postgresql://db_user:db_password@127.0.0.1:5432/db_name"
 CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
-JWT_PASSPHRASE= your_jwt_passphrase
+JWT_PASSPHRASE=your_jwt_passphrase
 ```
 
-## Initialize the Database
+## 🗄️ Initialize the Database
+
+Make sure your database is running before continuing.
+
+If you want to use **Docker**, a `compose.yaml` file is included to start a PostgreSQL database easily:
+
+```sh
+docker compose up
+```
+
+Then, run the following commands to initialize the database:
 
 ```sh
 php bin/console doctrine:database:create
@@ -38,13 +54,13 @@ php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 ```
 
-## Generate JWT Encryption Keys
+## 🔑 Generate JWT Encryption Keys
 
 ```sh
 php bin/console lexik:jwt:generate-keypair
 ```
 
-## Start the server
+## 🚀 Start the server
 
 ```sh
 symfony server:start
@@ -52,9 +68,9 @@ symfony server:start
 
 API will be available at http://127.0.0.1:8000
 
-# Authentication API Endpoints
+# 🔐 Authentication API Endpoints
 
-## Register a New User
+## ➕ Register a New User
 
 POST `/api/auth/register`
 
@@ -75,7 +91,7 @@ POST `/api/auth/register`
 }
 ```
 
-## Login
+## 🔑 Login
 
 POST `/api/auth/login`
 
@@ -96,7 +112,7 @@ POST `/api/auth/login`
 }
 ```
 
-## Get Authenticated User Info
+## 👤 Get Authenticated User Info
 
 GET `/api/auth/me`
 
@@ -115,7 +131,7 @@ Authorization: Bearer your_jwt_token
 }
 ```
 
-## Tools & Technologies Used
+## 🛠️ Tools & Technologies Used
 
 - **Symfony** (PHP Framework)
 - **Doctrine ORM** (ORM for the Database)
