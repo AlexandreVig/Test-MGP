@@ -31,11 +31,31 @@ body {
   box-shadow: var(--el-box-shadow-light);
 }
 
-@media (min-width: 640px) { .form-card { max-width: 480px; } }
-@media (min-width: 768px) { .form-card { max-width: 640px; } }
-@media (min-width: 1024px) { .form-card { max-width: 728px; } }
-@media (min-width: 1280px) { .form-card { max-width: 1024px; } }
-@media (min-width: 1536px) { .form-card { max-width: 1280px; } }
+@media (min-width: 640px) {
+  .form-card {
+    max-width: 480px;
+  }
+}
+@media (min-width: 768px) {
+  .form-card {
+    max-width: 640px;
+  }
+}
+@media (min-width: 1024px) {
+  .form-card {
+    max-width: 728px;
+  }
+}
+@media (min-width: 1280px) {
+  .form-card {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1536px) {
+  .form-card {
+    max-width: 1280px;
+  }
+}
 
 .submit-container {
   & > div {
@@ -53,4 +73,10 @@ body {
       color: var(--el-color-primary);
     }
   }
+}
+
+.password-validation {
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
 }

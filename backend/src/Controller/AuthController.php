@@ -30,6 +30,21 @@ class AuthController extends AbstractController
             return $this->json(['error' => 'Email is already in use'], 400);
         }
 
+        // Password validation
+        $password = $data['password'];
+        if (strlen($password) < 8) {
+            return $this->json(['error' => 'Password must be at least 8 characters long'], 400);
+        }
+        if (!preg_match('/[A-Z]/', $password)) {
+            return $this->json(['error' => 'Password must contain at least one uppercase letter'], 400);
+        }
+        if (!preg_match('/[a-z]/', $password)) {
+            return $this->json(['error' => 'Password must contain at least one lowercase letter'], 400);
+        }
+        if (!preg_match('/[\W_]/', $password)) {
+            return $this->json(['error' => 'Password must contain at least one special character'], 400);
+        }
+
         // Create new user
         $user = new User();
         $user->setEmail($data['email']);

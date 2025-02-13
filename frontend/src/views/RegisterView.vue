@@ -5,6 +5,8 @@ import type { AxiosError } from "axios";
 import {
   ElButton,
   ElCard,
+  ElCheckbox,
+  ElCheckboxGroup,
   ElForm,
   ElFormItem,
   ElInput,
@@ -20,8 +22,54 @@ const userData = ref<userAuthentification>({
   password: "",
 });
 
+interface Validation {
+  rule: string;
+  test: (value: string) => boolean;
+  isValid: boolean;
+}
+
 const router = useRouter();
 const formRef = ref<FormInstance>();
+const passwordValidation: Validation[] = [
+  {
+    rule: "Password must be at least 8 characters long",
+    isValid: false,
+    test: (value) => value.length >= 8,
+  },
+  {
+    rule: "Password must contain at least one uppercase letter",
+    isValid: false,
+    test: (value) => /[A-Z]/.test(value),
+  },
+  {
+    rule: "Password must contain at least one lowercase letter",
+    isValid: false,
+    test: (value) => /[a-z]/.test(value),
+  },
+  {
+    rule: "Password must contain at least one special character",
+    isValid: false,
+    test: (value) => /[\W_]/.test(value),
+  },
+];
+
+const validatePassword = (rule: any, value: string, callback: Function) => {
+  if (!value) {
+    passwordValidation.forEach((item) => (item.isValid = false));
+    return callback(new Error("Password is required"));
+  }
+
+  let valid = true;
+  passwordValidation.forEach((item) => {
+    item.isValid = item.test(value);
+    valid = valid && item.isValid;
+  });
+
+  if (!valid) {
+    return callback(new Error(""));
+  }
+  callback();
+};
 
 const rules: FormRules<userAuthentification> = {
   email: [
@@ -34,11 +82,7 @@ const rules: FormRules<userAuthentification> = {
   ],
   password: [
     { required: true, message: "Password is required", trigger: "blur" },
-    {
-      min: 6,
-      message: "Password must be at least 6 characters",
-      trigger: "blur",
-    },
+    { validator: validatePassword, trigger: ["blur", "change"] },
   ],
 };
 
@@ -86,6 +130,15 @@ const onSubmit = async () => {
       </ElFormItem>
       <ElFormItem label="Password" prop="password">
         <ElInput v-model="userData.password" type="password" show-password />
+        <div class="password-validation">
+          <ElCheckbox
+            v-for="(item, index) in passwordValidation"
+            :key="index"
+            :label="item.rule"
+            :model-value="item.isValid"
+            size="small"
+          ></ElCheckbox>
+        </div>
       </ElFormItem>
       <ElFormItem class="submit-container">
         <ElButton type="primary" @click="onSubmit">Submit</ElButton>
