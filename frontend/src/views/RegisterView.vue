@@ -6,7 +6,6 @@ import {
   ElButton,
   ElCard,
   ElCheckbox,
-  ElCheckboxGroup,
   ElForm,
   ElFormItem,
   ElInput,
