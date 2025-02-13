@@ -137,3 +137,4 @@ Authorization: Bearer your_jwt_token
 - **Doctrine ORM** (ORM for the Database)
 - **LexikJWTAuthenticationBundle** (JWT Auth)
 - **PostgreSQL** (Database)
+- **Docker** (Containerization)
