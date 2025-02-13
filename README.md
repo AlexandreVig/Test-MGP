@@ -35,7 +35,7 @@ Follow this [README](./backend/README.md) to setup the backend.
 
 ## ⚙️ Frontend Setup
 
-Follow this [README](./frontend/README.md) to setup the backend.
+Follow this [README](./frontend/README.md) to setup the frontend.
 
 ## 🛠️ Tools & Technologies Used
 
@@ -56,3 +56,9 @@ Follow this [README](./frontend/README.md) to setup the backend.
 - **Axios** (HTTP client)
 - **TypeScript** (Type safe Javascript)
 - **Sass** (CSS preprocessor)
+
+---
+
+📌 Author: [Alexandre Vigneau](https://github.com/AlexandreVig/)
+
+📌 License: [MIT](./LICENSE)
